@@ -14,7 +14,7 @@ def account_number_generator(size=10, chars=string.digits):
 def create_profile(sender, instance, created, **kwargs):
 	if created:
 		account_number = account_number_generator()
-		Profile.objects.create(user=instance, account_number=account_number)
+		Profile.objects.create(user=instance, account_number=account_number, opening_account_balance=5000, account_balance=5000)
 
 
 @receiver(post_save, sender=User)

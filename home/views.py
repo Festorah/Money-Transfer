@@ -79,10 +79,12 @@ def money_sent(request):
 		recipient_profile = request.POST.get('recipient_pk')
 		amount = request.POST.get('amount')
 
+		# Crediting recipient's account
 		recipient_profile = Profile.objects.get(pk=recipient_profile)
 		recipient_profile.account_balance = int(recipient_profile.account_balance) + int(amount)
 		recipient_profile.save()
 
+		# Debiting recipient's account
 		sender_profile = Profile.objects.get(user=request.user)
 		sender_profile.account_balance = int(sender_profile.account_balance) - int(amount)
 		sender_profile.save()
