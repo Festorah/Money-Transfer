@@ -1,0 +1,59 @@
+{% extends "home/base_second.html" %}
+{% load static %}
+{% block title %}
+  Confirm Page
+{% endblock %}
+
+{% block content %}
+
+  <div id="heno"></div>
+
+  <main id="main">
+
+    <!-- ======= Team Section ======= -->
+    <section id="team" class="team section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2 class="pt-2">Money Sent</h2>
+          <p>The recipient will be notified via an email.</p>
+        </div>
+
+        <div class="row align-items-center justify-content-center">
+
+          <div class="col-lg-6">
+            <div class="member d-flex align-items-start" data-aos="zoom-in" data-aos-delay="100">
+              <div class="pic"><img src="{% static 'assets/img/team/sent.jpg' %}" class="img-fluid" alt=""></div>
+              <div class="member-info align-items-center justify-content-center">
+                <h3>Success!</h3>
+                <!-- <span>Chief Executive Officer</span> -->
+                <h4>Transaction Complete</h4>
+
+                <p>You've Succesfully sent ${{ amount }} to {{ recipient_profile.user.username }}, See transaction details under Activity.</p>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row align-items-center justify-content-center mt-5">
+
+          <div class="col-lg-6 mt-5 mt-lg-0">
+            <form action="{% url 'money-sent' %}" method="post" role="form" class="php-email-form">
+              <div class="text-center"><button type="submit">Send Money Again</button></div>
+            </form>
+          </div>
+          
+        </div>
+
+
+
+
+
+      </div>
+    </section><!-- End Team Section -->
+
+  </main><!-- End #main -->
+
+{% endblock content %}

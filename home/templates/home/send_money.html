@@ -1,0 +1,56 @@
+{% extends "home/base_second.html" %}
+{% load static %}
+{% block title %}
+  Home Page
+{% endblock %}
+
+{% block content %}
+
+  <div id="heno"></div>
+  <main id="main">
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2 class="pt-2">Send Money</h2>
+          <h4>100% secure</h4>
+          <p>Send your money at anytime, anywhere in the world</p>
+        </div>
+
+        <div class="row align-items-center justify-content-center">
+
+          <div class="col-lg-6 mt-5 mt-lg-0">
+            <form action="{% url 'confirm' %}" method="post" role="form" class="php-email-form">
+              {% csrf_token %}
+              <div class="row d-block">
+                <div class="form-group col-md-12 align-items-center justify-content-center">
+                  <label class="sr-only">Select your Recipient</label>
+                  <select name="recipient_pk" class="form-control">
+                    <option selected="true" disabled="disabled">Recipients username</option>
+                   {% for profile in profiles %}
+                     {% if profile.user.username == request.user.username %}
+                      <option selected="true" disabled="disabled">{{ profile.user.username }}</option>
+                     {% else %}
+                      <option value="{{ profile.pk }}">{{ profile.user.username }}</option>
+                     {% endif %}
+                   {% endfor %}
+                  </select>
+                </div>
+                <div class="form-group col-md-12 align-items-center justify-content-center">
+                  <label for="name">Enter amount</label>
+                  <input type="number" name="amount" class="form-control" id="name" required>
+                </div>
+              </div>
+              <div class="text-center"><button type="submit">Continue</button></div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+{% endblock content %}
